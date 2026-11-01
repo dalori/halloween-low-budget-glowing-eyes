@@ -23,6 +23,18 @@ Multiple matrices can be connected in a single daisy-chained LED "strip" and ope
 
 All matrices are connected in series using a single data line and forwarding VCC and GND.
 
+### wiring
+
+     ESP32                   Matrix 1                 Matrix 2
+    +--------+              +----------+             +----------+
+    |        |              |          |             |          |
+    | GPIO 1 |------------->| DIN  OUT |------------>| DIN  OUT |--> ...
+    |        |              |          |             |          |
+    |  5V    |------------->| 5V    5V |------------>| 5V    5V |--> ...
+    |  GND   |------------->| GND  GND |------------>| GND  GND |--> ...
+    |        |              |          |             |          |
+    +--------+              +----------+             +----------+
+
 ## configuration
 
 All main settings are defined in `config.h`, e.g. LED matrix count, delays, and durations.
@@ -54,7 +66,7 @@ Install the required library and select the appropriate ESP32 board in the Ardui
 
 Open `halloween-low-budget-glowing-eyes.ino` to compile and upload the project.
 
-## Project Structure
+## project structure
 
 ```text
 HalloweenEyes/
