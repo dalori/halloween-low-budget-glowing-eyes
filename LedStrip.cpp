@@ -1,18 +1,18 @@
 #include "LedStrip.h"
 
-LedStrip::LedStrip() : strip(LEDS_COUNT, LEDS_PIN) {}
+LedStrip::LedStrip() {}
 
 void LedStrip::begin() {
-    strip.begin();
-    strip.setBrightness(MAX_BRIGHTNESS);
+    FastLED.addLeds<WS2812, LEDS_PIN, GRB>(leds, LEDS_COUNT);
+    FastLED.setBrightness(MAX_BRIGHTNESS);
+    FastLED.clear(true);
 }
 
 void LedStrip::setPixel(uint16_t index, uint8_t red, uint8_t green, uint8_t blue) {
     if (index >= LEDS_COUNT) return;
-    uint32_t color = ((uint32_t)red << 16) | ((uint32_t)green << 8) | blue;
-    strip.setLedColorData(index, color);
+    leds[index].setRGB(red, green, blue);
 }
 
 void LedStrip::show() {
-    strip.show();
+    FastLED.show();
 }

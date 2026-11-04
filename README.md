@@ -7,7 +7,7 @@ Multiple matrices can be connected in a single daisy-chained LED "strip" and ope
 
 - **multiple independent matrices** – configure the amount of 64 pixel matrices
 - **random effect selection** – weight and select each matrix effect independently
-- **single data line** – all eyes connect via one data connection with a single ESP32 
+- **single data line** – all eyes connect via one data connection with a single ESP32
 
 ### effects
 
@@ -60,7 +60,7 @@ constexpr uint8_t STROBE_WEIGHT = 1;
 
 - Arduino IDE
 - ESP32 Arduino Core
-- `ESP32_WS2812_Lib` library
+- [`FastLED`](https://github.com/FastLED/FastLED) library (Library Manager → "FastLED")
 
 Install the required library and select the appropriate ESP32 board in the Arduino IDE.
 
@@ -69,11 +69,15 @@ Open `halloween-low-budget-glowing-eyes.ino` to compile and upload the project.
 ## project structure
 
 ```text
-HalloweenEyes/
+halloween-low-budget-glowing-eyes/
 ├── halloween-low-budget-glowing-eyes.ino
 ├── config.h
-├── LedMatrix.h
-├── LedMatrix.cpp
+├── LedStrip.h
+├── LedStrip.cpp
+├── Matrix.h
+├── Matrix.cpp
+├── MatrixController.h
+├── MatrixController.cpp
 ├── Effect.h
 ├── GlowEffect.h
 ├── GlowEffect.cpp
@@ -85,9 +89,11 @@ HalloweenEyes/
 
 ### software structure
 
-- `HalloweenEyes.ino` – Main program and effect scheduling
+- `halloween-low-budget-glowing-eyes.ino` – Main program, setup and main loop
 - `config.h` – Central configuration
-- `LedMatrix` – WS2812 hardware abstraction
+- `LedStrip` – WS2812 hardware abstraction (FastLED)
+- `Matrix` – One 8×8 matrix as a window onto the strip
+- `MatrixController` – Per-matrix effect scheduling and weighted random selection
 - `Effect` – Common interface for all effects
 - `GlowEffect` – Red glow animation
 - `KnightRiderEffect` – Two-row scanning animation
