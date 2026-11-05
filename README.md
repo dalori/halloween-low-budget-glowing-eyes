@@ -9,6 +9,8 @@ Multiple matrices can be connected in a single daisy-chained LED "strip" and ope
 - **random effect selection** – weight and select each matrix effect independently
 - **single data line** – all eyes connect via one data connection with a single ESP32
 
+Find the full build on [instructables.com](https://www.instructables.com/Low-Budget-Creepy-Glowing-Eyes-for-Your-Halloween-/).
+
 ### effects
 
 - red glow – fade-inand-out standard eyes
